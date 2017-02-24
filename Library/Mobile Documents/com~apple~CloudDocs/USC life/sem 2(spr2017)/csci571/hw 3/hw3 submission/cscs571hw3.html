@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		body{
+			width: 1170px;
+			margin: 0 auto;
+		}
+		div.top{
+			height: 600px;
+			width: 100%;
+			background-color: white;
+		}
+		div.bottom{
+			height: 420px;
+			width: 100%;
+			background-color: black;
+		}
+		div.subtop{
+			background-color: black;
+			height: 40%;
+			width: 100%
+		}
+		div.subbot{
+			background-color: black;
+			height: 60%;
+			width: 100%;
+
+		}
+		div.titl{
+			margin: auto;
+    		width: 30%;
+    		height: 35%;
+    		display: block;
+    		margin-top: 5%;
+    		color: white;
+    		background-color: black;
+    		text-align: center;
+    		vertical-align: middle;
+		}
+		div.divider{
+			border-left: 1px solid grey;
+			height: 87%;
+			float: left;
+			margin-top: 21px;
+		}
+		div.subleft{
+			float: left;
+			background-color: black;
+			height: 100%;
+			width: 39%;
+			color: white;
+			text-align: center;
+			border-bottom: 1px solid grey;
+		}
+		div.subright{
+			float: left;
+			background-color: black;
+			height: 100%;
+			width: 60%;
+			border-bottom: 1px solid grey;
+		}
+		div.botleft{
+			float: left;
+			height: 100%;
+			width: 40%;
+			background-color: black;
+		}
+		div.botright{
+			float: right;
+			height: 100%;
+			width: 60%;
+			background-color: black;
+
+		}
+		div.col1{
+			float: left;
+			height: 100%;
+			width: 50%;
+			background-color: black;
+		}
+		div.col2{
+			float: right;
+			height: 100%;
+			width: 50%;
+			background-color: black;
+		}
+		div.colclass{
+			float: left;
+			height: 100%;
+			width: 60%;
+			background-color: red;
+		}
+		div.col5{
+			float: right;
+			height: 100%;
+			width: 40%;
+			background-color: black;
+		}
+		div.col3{
+			float: left;
+			height: 100%;
+			width: 50%;
+			background-color: black;
+		}
+		div.col4{
+			float: right;
+			height: 100%;
+			width: 50%;
+			background-color: black;
+		}
+		div.titltop{
+			background-color: black;
+			height: 40%;
+			width: 100%;
+		}
+		div.titlbottom{
+			background-color: black;
+			height: 60%;
+			width: 100%;
+		}
+		div.titlleft{
+			float: left;
+			background-color: black;
+			height: 100%;
+			width: 40%;
+			text-align: right;
+			padding-top: 2%;	
+		}
+		div.titlright{
+			float: right;
+			background-color: black;
+			height: 100%;
+			width: 60%;
+			text-align: left;	
+		}
+		div.imgdiv{
+			position: relative;
+			height: 50%;
+			background-color: white;
+		}
+		div.imgclick{
+			width: 100%;
+			height: 100%;
+			background-image: url(http://cs-server.usc.edu:45678/hw/hw3/images/sayhello.png);
+			background-size: 163% 124%;
+			background-repeat: no-repeat;
+			background-position: 67% -93%;
+		}
+		hr{ 
+    		display: block;
+    		width: 90%;
+    		margin: 10%;
+		}
+		img.hello{
+			position:absolute;
+			width: 100%; 
+			left: 3%;
+			top:12%; 
+			
+		}
+		p.heading{
+			font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+    		letter-spacing: 5px;
+    		font-size: 12px;
+    		padding-top: 13%;
+		}		
+		p.texts1{
+			font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+    		letter-spacing: 4px;
+    		color: white;
+    		font-size: 12px;
+    		margin-top: 17%;
+    	}
+    	p.texts2{
+    		font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+    		font-size: 111px;
+			margin-top: 0;
+    	}
+    	p.texts3{
+			font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+			font-size: 43px;
+			border-bottom: solid 4px white;
+			padding-bottom: 3px;
+			display: inline;
+		}
+		p.texts4{
+			position:absolute; 
+			left: 49%;
+			top: 41%; 
+			text-align: center;
+			font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+			letter-spacing: 3px;
+			font-size: 11px;
+			color: #B59B4A;
+			margin-left: -149px; 
+		}
+		p.texts5{
+    		position:absolute; 
+			left: 46%;
+			top: 53%; 
+			text-align: center;
+			font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+			font-size: 15px;
+			margin-left: -205px;
+			color: black;
+    	}
+    	p.addscot{
+    		font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+    		color: white;
+    		font-size: 13px;
+    		padding-left: 10%;
+    		line-height: 125%;
+    	}
+    	p.head3{
+    		font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+    		color: #B59B4A;
+    		margin-top: 12%;
+    		margin-left: 10%;
+    		font-size: 15px;
+    		letter-spacing: 3px;	
+    	}
+    	p.head4{
+    		font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+    		color: white;
+    		margin-left: 10%;
+    		font-size: 15px;
+    		letter-spacing: 3px;
+    	}
+    	
+    	input[type=text]{
+			width: 40%;
+			height: 25%;
+			font-size: 15px;
+			color: grey;
+			margin-left: 8%;
+			padding-left: 3%;
+		}
+    	button.signupbtn{
+			background-color: black;
+			color: white;
+			border: 3px solid white;
+			width: 30%;
+			height: 31%;
+			font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+			letter-spacing: 4px;
+			margin-top: 1%;
+		}
+		button.signupbtn:hover{
+			color: black;
+			background-color: white;
+			cursor: pointer;
+		}
+		button.contactbtn{
+			background-color: black;
+			color: white;
+			border: 2px solid white;
+			width: 68%;
+			height: 15%;
+			margin-left: 10%;
+			margin-top: 10%;
+			font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+			letter-spacing: 2px;
+		}
+		button.contactbtn:hover{
+			color: black;
+			background-color: white;
+			cursor: pointer;
+		}
+		button.touchbtn{
+			position: absolute;
+			left: 39%;
+			top:80%; 
+			background-color: white;
+			color: black;
+			border: 3px solid black;
+			margin-left: 1%;
+			width: 20%;
+			height: 15%;
+			font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+			letter-spacing: 3px;
+		}
+		button.touchbtn:hover{
+			color: white;
+			background-color: black;
+			cursor: pointer;
+		}
+		p.cell1{
+			font-family: sans-serif, "Gill Sans", "Gill Sans MT";
+    		letter-spacing: 4px;
+    		margin-top: 4%;
+    		font-size: 12px;
+    		color: #B59B4A;
+    		padding-top: 2%;
+    		padding-left: 8%;
+    		vertical-align: bottom;
+		}
+		hr{ 
+    		display: block;
+    		width: 90%;
+    		margin: 5%;
+		}
+		a.link1{
+			color: white;
+			text-decoration: none;
+		}
+		a.link2{
+			color: black;
+			text-decoration: none;
+		}
+		a.link2:hover{
+			color: white;
+			text-decoration: none;
+			cursor: pointer;
+		}
+		a.link1:hover{
+			color: white;
+			text-decoration: underline;
+			cursor: pointer;
+		}
+		a.link3{
+			color: white;
+			text-decoration: none;
+		}
+		a.link3:hover{
+			color: black;
+			text-decoration: none;
+			cursor: pointer;
+		}
+		a.link4{
+			display: block;
+			width: 50%;
+			height: 80%;
+			margin-left: 30%;
+		}
+		a.link4:hover{
+			cursor: pointer;
+		}
+		a.link5{
+			color: white;
+			text-decoration: none;
+		}
+		a.link5:hover{
+			cursor: pointer;
+		}
+		a.emaillink{
+			color: white;
+			text-decoration: underline;
+		}
+		a.emaillink:hover{
+			color: white;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="top">
+		<div class="titl" align="center">
+			<div class="titltop">
+				<p class="heading">LOCATION FAVOURITES</p>
+				<hr>
+			</div>
+			<a href="pg1.html#no13" class="link5" title="section six" target="_blank"><div class="titlbottom">
+				<div class="titlleft">
+					<p class="texts3">No.</p>
+				</div>
+				<div class="titlright">
+					<p class="texts2">13</p>
+				</div>
+			</div></a>
+		</div>
+		<div class="imgdiv">
+			<a href="pg1.html#hello" class="link4" title="section one" target="_blank">		
+				<div class="imgclick"></div>
+			
+			<p class="texts4">INTERESTED IN WORKING WITH US?</p>
+						
+				<p class="texts5">We'd love to hear from you, so give us a call. Or, if you're the shy and retiring<br/>type, drop us a line here and we'll get back to you</p>
+			</a>
+				<a href="pg1.html#touch" class="link2" title="section two" target="_blank"><button type="button" class="touchbtn"> GET IN TOUCH</button></a>
+		</div>
+	</div>
+	<div class="bottom">
+		<div class="subtop">
+			<div class="subleft">
+				<a href="pg1.html#article" class="link1" title="section four" target="_blank"><p class="texts1">READ OUR LATEST ARTICLES</p></a>	
+			</div>
+			<div class="divider"></div>
+			<div class="subright">
+				<p class="cell1">
+				SIGN UP TO OUR NEWSLETTER
+				</p>
+				<input type="text" name="emailbox" placeholder="Enter your email address"/>
+				<a href="pg1.html#signup" class="link3" title="section three" target="_blank"><button type="button" class="signupbtn"> SIGN UP </button></a>
+			</div>
+		</div>
+		<div class="subbot">
+			<div class="botleft">
+				<div class="col1">
+					<p class="head3">HEADQUARTERS</p>
+					<p class="head4">EDINBURGH</p>
+					<p class="addscot">1012 Constitution Street<br/>Edinburgh<br/>Scotland<br/>EH6 7AE
+					</p>
+					<a href="pg1.html#contact" class="link3" title="section five" target="_blank"><button type="button" class="contactbtn"> CONTACT US </button></a>
+				</div>
+				<div class="col2">
+					<br/><br/><br/><br/><br/>
+					<p class="addscot">T: +44 (0) 555 561 01210<br/>E: <a href="mailto:hello@productions.com" class="emaillink">hello@productions.com</a></p>
+				</div>
+			</div>
+			<div class="botright">
+				<div class="colclass">
+					<div class="col3">
+						<p class="head3">OFFICES</p>
+						<p class="head4">NEW YORK</p>
+						<p class="addscot">12 E. 47th Street<br/>5th Floor<br/>New York, New York 10017<br/>USA<br/><br/><br/>T: +1 212-555-8843<br/>E: <br/><a href="mailto:newyork@productions.com" class="emaillink">newyork@productions.com</a></p>
+					</div>
+					<div class="col4">
+						<br/><br/>
+						<p class="head4">LONDON</p>
+						<p class="addscot">128 Dean Street<br/>London<br/>England<br/>W1D 4QF<br/><br/><br/>T: +44 (0) 20 5555 1190<br/>E: <br/><a href="mailto:london@productions.com" class="emaillink">london@productions.com</a></p>
+					</div>
+				</div>
+				<div class="col5">
+					<br/><br/>
+					<p class="head4">MANCHESTER</p>
+					<p class="addscot">37 Oldfield Road<br/>Manchester<br/>England<br/>M5 4LZ<br/><br/><br/>T: +44 (0) 161 467 1212<br/>E: <br/><a href="mailto:manchester@productions.com" class="emaillink">manchester@productions.com</a></p>
+				</div>
+			</div>		
+		</div>		
+	</div>
+	<noscript></noscript>
+</body>
+</html>
