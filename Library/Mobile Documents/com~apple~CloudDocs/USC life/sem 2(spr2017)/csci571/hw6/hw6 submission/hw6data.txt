@@ -1,0 +1,24 @@
+Facebook app secret:
+
+7bd208ef074a9e5a5bbe2299a272081b
+
+Facebook app id:
+
+1419474048096610
+
+Facebook Access token:
+
+1419474048096610|1fNFD88LtS-C03PfvSJmnV5jiNo
+
+User token:
+
+EAAULAQ5nmWIBAPPsRBbApSSopUjtcbMVtD7Q0u5OZABkgZBMYIyHHeW9ymmvodvYGgQcvP5hGJZBiRj2zN65Ogm7laska1StkJihXvxjuYN7qYpghZBrDdEfkDjvnaP2rCg2y9a0xMWD9ZBGluoAewH8eOgGDU4aU3lXXgPkQ83XzEudaX48Q0pIlkGoqRqkZD
+
+
+60 Day Access token:
+
+EAAULAQ5nmWIBAKJsm8hdYwqZARur3oOANv07bheHLCK2U6WmDcBRZC9kx60bYb6Nd8KHow4BK3ONreZAeptl7ZCqMiZCY877hONUufxBs91sJdgl2PQcsh4x4kotAOiav3e8eRc04pIjIpmTO6ItWwWYYc3CwPcYZD
+
+Google API key:
+
+AIzaSyAcmvkY2dNI2MnXZO7XKEH4nAhPCtu_xLA
