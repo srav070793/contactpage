@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		 
+		<style type="text/css">
+			body{
+				height: 1170px;
+			}
+			#searchBoxDiv{
+				width: 100%;
+				height: 5%;
+				background-color: green;
+			}
+			.navbar{
+				border-radius: 0;
+			}
+			#titlePara{
+				float: left;
+				margin-top: 1%;
+				margin-bottom: 0;
+				font-size: 1.5em;
+				margin-left: -5%;
+				color: #3b5998;
+			}
+			#input-group1{
+				margin-left: 23%;
+			}
+			.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+				color: white;
+				background-color: #3b5998;
+			}
+			#resultsarea{
+				width: 100%;
+				height: 100%;
+				
+			}
+			.glyphicon-star{
+				color: yellow;
+			}
+			.btn-default:hover{
+				background-color: white;
+			}
+			.insideDetailsDiv{
+				border: 1px solid #ccc;
+				background-color: #fff;
+				border-radius: 3px;
+			}
+			.detTitle{
+				background-color: #f0f0f0;
+				padding-left: 1%;
+			}
+			.nodat{
+				border: 1px solid rgb(250,255,189);
+				background-color: rgb(250,255,189);
+				opacity: 0.75;
+				border-radius: 3px;
+				width: 96%;
+				margin-left: 2%;
+				padding-left: 1%;
+			}
+			.dat{
+				border: 1px solid #f0f0f0;
+				background-color: #f0f0f0;
+				border-radius: 3px;
+				width: 96%;
+				margin-left: 2%;
+				padding-left: 1%;
+				margin-bottom: 1%
+			}
+			#postsDiv{
+				padding-left: 0;
+				padding-right: 0;
+			}
+			#albumsDiv{
+				padding-left: 0; 
+			}
+
+			/*animation for sliding in from left*/
+			@-webkit-keyframes slideInLeft {
+  				from {
+    			-webkit-transform: translate3d(-100%, 0, 0);
+    			transform: translate3d(-100%, 0, 0);
+  				}
+
+  				to {
+    			-webkit-transform: translate3d(0, 0, 0);
+    			transform: translate3d(0, 0, 0);
+  				}
+			}
+
+			@keyframes slideInLeft {
+  				from {
+    			-webkit-transform: translate3d(-100%, 0, 0);
+    			transform: translate3d(-100%, 0, 0);
+    
+  				}
+
+  				to {
+    			-webkit-transform: translate3d(0, 0, 0);
+    			transform: translate3d(0, 0, 0);
+  				}
+			}
+
+			/*animation for sliding in from right*/
+			@keyframes slideInRight {
+  				from {
+    			-webkit-transform: translate3d(100%, 0, 0);
+    			transform: translate3d(100%, 0, 0);
+  				}	
+
+  				to {
+   				-webkit-transform: translate3d(0, 0, 0);
+    			transform: translate3d(0, 0, 0);
+  				}
+			}
+
+			@-webkit-keyframes slideInRight {
+  				from {
+    			-webkit-transform: translate3d(100%, 0, 0);
+    			transform: translate3d(100%, 0, 0);
+  				}
+
+  				to {
+    			-webkit-transform: translate3d(0, 0, 0);
+    			transform: translate3d(0, 0, 0);
+  				}
+			}	
+			
+			/* assign slidinright animation to the albums and posts*/
+			div.detailsDiv.ng-hide-remove{			
+  				-webkit-animation:0.6s slideInRight ease;
+  				animation:0.6s slideInRight ease;
+			}
+
+			/*assign slide in left animation to the table div*/
+			div.tableContainer.ng-hide-remove{
+				-webkit-animation:0.6s slideInLeft ease;
+  				animation:0.6s slideInLeft ease;
+			}
+
+			.detailsDiv.ng-hide {
+  				opacity: .2;
+			}
+
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="./js/controller.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-animate.js"></script>
+		
+		<script type="text/javascript">
+			function changeactive(lisent){
+				
+				var list=document.getElementById("navlist");
+				var i=0;
+				
+				while(i<list.children.length){
+					if (list.children[i].id == lisent.parentElement.id) {
+						list.children[i].className = "active";
+						list.children[i].setAttribute("class","active");
+					}
+					else{
+						list.children[i].className = "inactive";
+						list.children[i].setAttribute("class","inactive");
+					}
+					i++;
+				}
+			}
+			var hashMap = {};
+			function fillStar(button){
+
+				if (button.children[0].className == "glyphicon glyphicon-star-empty") {
+					button.children[0].className = "glyphicon glyphicon-star";
+					button.children[0].setAttribute("ng-class", "favBtnClassActive");
+					hashMap[button.id] = true;
+					localStorage.setItem('hashMap',JSON.stringify(hashMap))
+
+				}
+				else if (button.children[0].className == "glyphicon glyphicon-star") {
+					button.children[0].className = "glyphicon glyphicon-star-empty";
+					button.children[0].setAttribute("ng-class", "favBtnClass");
+					delete hashMap[button.id]
+					localStorage.setItem('hashMap',JSON.stringify(hashMap))
+				}
+			}
+		</script>
+	</head>
+	<body ng-controller="myFBController" id="myFBController">
+
+		<div id="searchBoxDiv"> <!--container for the search bar-->
+			<nav class="navbar navbar-default">
+				<div class="container" id="searchBox">
+					<p id="titlePara">FB Search</p>
+					<form class="navbar-form" role="search" method="GET">
+						<div class="input-group" id="input-group1" style="width: 50%">
+							<input type="text" class="form-control" placeholder="type something..." name="queryIn" id ="queryInId" style="border-radius: 0;" ng-model="queryInput" required>
+						
+							<div class="input-group-btn" >
+								<button class="btn btn-default" ng-click="getData()" id="searchBtn" type ="submit" style="border-radius:0;width: 100%; background-color: #3b5998;border: 1px solid #3b5998;">
+									<i class="glyphicon glyphicon-search" style="color: white;"></i>
+								</button>
+							</div>
+						</div>
+						<button class="btn btn-default" type="reset" style="border-radius: 0; color: #3b5998; border: 1px solid #3b5998;" ng-click="clearEverything()">Clear</button>
+					</form>
+				</div>
+			</nav>
+		</div>
+		<!--nav bar displaying users, pages etc.,-->
+		<nav class="navbar navbar-default" style="position: relative; top: -0.6%;background-color: white;border-bottom: 2px solid #3b5998;">
+			<div class="container" id="searchType" style="width: 100%;padding-left: 0;padding-right: 0;" ng-init="searchType='users'">
+				<ul class="nav navbar-nav" style="width: 100%;" id="navlist">
+					<li class="active" style="width: 16.5%;text-align: center;" id="user">
+						<a href="#" onclick="changeactive(this)" ng-click="getUsers()">Users</a>
+					</li>
+					<li class="inactive" style="width: 16.5%;text-align: center;" id="page">
+						<a href="#" onclick="changeactive(this)" ng-click="getPages()">Pages</a>
+					</li>
+					<li class="inactive" style="width: 16.5%;text-align: center;" id="event">
+						<a href="#" onclick="changeactive(this)" ng-click="getEvents()">Events</a>
+					</li>
+					<li class="inactive" style="width: 16.5%;text-align: center;" id="place">
+						<a href="#" onclick="changeactive(this)"  ng-click="getPlaces()">Places</a>
+					</li>
+					<li class="inactive" style="width: 16.5%;text-align: center;" id="group">
+						<a href="#" onclick="changeactive(this)" ng-click="getGroups()">Groups</a>
+					</li>
+					<li class="inactive" style="width: 17.5%;text-align: center;" id="favorites">
+						<a href="#" onclick="changeactive(this)" ng-click="getFavorites()">Favorites</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- Master container for table and albums and posts-->
+		<div class="container resultsContainer">
+			<div class="progress" ng-show="showProgress && !displayDetails">
+    			<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+      				<span class="sr-only">70% Complete</span>
+    			</div>
+  			</div>
+  		<!--div for displaying tables-->
+		<div class = "container" id="resultsarea" ng-if="result.length>0" ng-show="displayTable" ng-class="backFromDetails">
+			
+			<!--div for showing tables except for favorites-->
+			<div ng-show="inFavTab==0" ng-hide="showProgress">
+				<table class="table" ng-show="inFavTab==0">
+					<tr>
+						<th> {{ th1 }} </th>
+						<th> {{ th2 }} </th>
+						<th> {{ th3 }} </th>
+						<th> {{ th4 }} </th>
+						<th> {{ th5 }} </th>
+					</tr>
+					<tr ng-repeat= "x in result" ng-init="readLocalStorage()"> 
+						<td> {{ $index+1 }} </td>
+						<td><img ng-src= "{{ x.picture.data.url }}" alt="Load Image" height=30 width=30 style="border-radius: 50%;"></td>
+						<td>{{ x.name }}</td>
+						<td >
+						<button name="favoriteBtn" class="btn btn-default myfavoriteBtn" ng-click="updateFavorite(x, $index+1, $event)" id="{{x.id}}" onclick="fillStar(this)">
+						<i ng-class="{true:'glyphicon glyphicon-star-empty', false:'glyphicon glyphicon-star'}[storedhashMap[x.id] == undefined]"></i>
+						</button>
+						</td>
+						<td><button name="detailsBtn" class="btn btn-default" ng-click="getDetails(x)"><i class="glyphicon glyphicon-menu-right"></i></button></td>
+					</tr> 
+				</table>
+				<button class="btn btn-default" name="prevBtn" ng-show="dataPrev == '1'" ng-click="getPrevData()">Previous</button>
+				<button class="btn btn-default" name="nextBtn" ng-show= "dataNext =='1'" ng-click="getNextData()">Next</button>
+			</div>
+
+			<!--div for showing favorites table-->
+			<div  ng-show="inFavTab==1">
+				<table class="table table-striped">
+					<tr>
+						<th> {{ th1 }} </th>
+						<th> {{ th2 }} </th>
+						<th> {{ th3 }} </th>
+						<th> {{ th4 }} </th>
+						<th> {{ th5 }} </th>
+						<th> {{ th6 }} </th>
+					</tr>
+					<tr ng-repeat= "x in result" ng-init="readLocalStorage()">
+						<td> {{ x.no }} </td>
+						<td><img ng-src= "{{ x.picture.data.url }}" alt="Load Image" height=30 width=30 style="border-radius: 50%;"></td>
+						<td>{{ x.name }}</td>
+						<td>{{ x.type }}</td>
+						<td><button name="favoriteBtn" class="btn btn-default myfavoriteBtn" ng-click="deleteAndUpdate(x,$index,$event)"><i ng-class="favBtnDelete"></i></button></td>
+						<td><button name="detailsBtn" class="btn btn-default" ng-click="getDetails(x)"><i class="glyphicon glyphicon-menu-right"></i></button></td>
+					</tr> 
+				</table>
+			</div>
+
+		</div>
+		<!--div for loading the controls on albums and posts-->
+		<div ng-show="displayDetails" class="detailsDiv">
+			<!--div for facebook and controls-->
+			<div>
+				<button class="btn btn-default" ng-click="goBack()"><i class="glyphicon glyphicon-menu-left"></i>Back</button>
+				
+				<button name="favoriteBtn" class="btn btn-default myfavoriteBtn" ng-click="updateFavorite(x, $index+1, $event)" id="{{x.id}}" onclick="fillStar(this)">
+					<i ng-class="{true:'glyphicon glyphicon-star-empty', false:'glyphicon glyphicon-star'}[storedhashMap[selectedFav] == undefined]"></i>
+				</button>
+
+				<button class="btn btn-default" ng-click="posttoFB()"><img src="facebook.png" height="20" width="20"></button>
+
+			</div>
+
+			<!--Div for albums-->
+			<div ng-switch = "albums" id="albumsDiv" class="col-md-6">
+
+				<div class="progress" ng-show="showProgress">
+    				<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+      					<span class="sr-only">70% Complete</span>
+    				</div>
+  				</div>
+
+				<div ng-switch-when = "Albums to be loaded"></div>
+				<div class="insideDetailsDiv" ng-switch-when = "No albums have been found">
+					
+					<p class="detTitle">Albums</p>
+					<p class="nodat">No data found</p>
+				</div>
+				<div class="insideDetailsDiv" ng-switch-default>
+					<p class="detTitle">Albums</p>
+					<!--<p>Albums found</p>-->
+					<div class="dat" ng-repeat="x in albums.data" ng-init = "retrievePhotos(x,$index)">
+						<a href="#" ng-click= "toggleDisplay($index)"><p>{{ x.name }}</p></a>
+						<div ng-repeat= "p in x.photos.data" ng-show= "photoDisplay[$parent.$index] == 1">
+							<img width=100 height =100 ng-src = "{{ photos[$index+2*$parent.$index].url }}" alt="photo">
+						</div>
+					</div>
+				</div>
+			</div>
+				<!--div for posts-->
+			<div ng-switch = "posts" id="postsDiv" class="col-md-6">
+				<div class="progress" ng-show="showProgress">
+    				<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+      					<span class="sr-only">70% Complete</span>
+    				</div>
+  				</div>
+
+				<div ng-switch-when = "Posts to be loaded"></div>
+				<div class="insideDetailsDiv" ng-switch-when = "No posts have been found" >
+					<p class="detTitle">Posts</p>
+					<p class="nodat">No data found</p>
+				</div>
+				<div class="insideDetailsDiv" ng-switch-default>
+					<p class="detTitle">Posts</p>	
+						
+					<div ng-repeat = "x in posts.data" class="insideDetailsDiv" ng-if="x.message" style="margin-bottom: 1%;margin-left: 1%;margin-right: 1%;">
+						<div id="postheading" style="margin-top: 1%;margin-left: 1%">
+							<div style="float: left;width:10%;">
+								<img width= 50 height=50 ng-src="{{ profilepic }}">
+							</div>
+							<div style="float: right;width: 90%; padding-left: 2%;">
+								<p style="margin-bottom: 0;"> {{ profilename }} </p>
+								<p>{{x.created_time | date: 'yyyy-MM-dd HH:mm:ss'}}</p>
+							</div>
+						</div>
+						<div id="postbody" style="margin-left: 1%;">
+							<span id=><p style="padding-top: 13%;"> {{ x.message }}</p></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div> <!--end of master container div-->
+	</body>
+</html>
